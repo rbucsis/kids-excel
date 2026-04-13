@@ -9,7 +9,7 @@ const Layout = ({ children }) => {
             </header>
             <div className='flex grow'>
                 <Nav />
-                <main className='h-[100%] w-[100%] overflow-y-auto p-2'>
+                <main className='h-[100%] w-[100%] overflow-y-auto bg-[#EEE] border-2 rounded-md border-[#B795E4]'>
                     {children}
                 </main>
             </div>
