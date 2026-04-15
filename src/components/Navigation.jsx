@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom';
-import config from '../config/config.js';
+import config from '../config/config.jsx';
 
 const links = config.navigation;
 

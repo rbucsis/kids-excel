@@ -1,6 +1,7 @@
 import { useParams } from "react-router-dom";
 import { useQuery } from "@tanstack/react-query";
 import { useState } from "react";
+import StudentForm from "./StudentForm.jsx"
 
 function calculateAge(birthday) { // birthday is a date
     var ageDifMs = Date.now() - birthday;
@@ -11,6 +12,7 @@ function calculateAge(birthday) { // birthday is a date
 function StudentDetail() {
     const { id } = useParams();
     const [ tab, setTab ] = useState("Family");
+    const [ isEditing, setEditing ] = useState(true)
     const {data: student, isLoading, error } = useQuery({
         queryKey: ['students', id],
         queryFn: () => fetch("http://localhost:8000/students/"+(id)).then(res => res.json())
@@ -34,7 +36,7 @@ function StudentDetail() {
 
     return (
         <div className='p-2'>
-            <h1>{ student.first_name + " " + student.last_name }</h1>
+            <h1>{ (student.first_name + " " + (student.last_name || "")).trim() }</h1>
             <h2>{ student.short_name }</h2>
             {student.birthdate && (
                 <div>
@@ -130,6 +132,7 @@ function StudentDetail() {
                 )}
                 </div>
             </div>
+            {isEditing && StudentForm(setEditing, student)}
         </div>
     )
 }

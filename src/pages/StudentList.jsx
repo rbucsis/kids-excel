@@ -32,13 +32,13 @@ function StudentList() {
                 <Link className='flex m-3 p-2 rounded-md border-2 hover:bg-[#B795E4] transition-colors duration-300 border-[#B795E4]' to={"/students/"+s.id}>
                     <div>
                     {s.image ? (
-                        <img src="" alt={(s.first_name+" "+s.last_name).trim()+" Picture"}></img>
+                        <img src="" alt={(s.first_name+" "+(s.last_name || "")).trim()+" Picture"}></img>
                     ) : (
                         <MdPersonOutline className='text-2xl'/>
                     )}
                     </div>
                     <div className='ml-2'>
-                        {s.first_name+" "+s.last_name}
+                        {(s.first_name+" "+(s.last_name || "")).trim()}
                     </div>
                 </Link>
             ))}
