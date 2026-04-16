@@ -1,7 +1,7 @@
 import { useParams } from "react-router-dom";
 import { useQuery } from "@tanstack/react-query";
 import { useState } from "react";
-import StudentForm from "./StudentForm.jsx"
+import StudentForm from "../components/StudentForm.jsx"
 
 function calculateAge(birthday) { // birthday is a date
     var ageDifMs = Date.now() - birthday;
