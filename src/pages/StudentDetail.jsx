@@ -36,6 +36,7 @@ function StudentDetail() {
 
     return (
         <div className='p-2'>
+            <button onClick={() => setEditing(true)} disabled={isEditing}>Edit</button>
             <h1>{ (student.first_name + " " + (student.last_name || "")).trim() }</h1>
             <h2>{ student.short_name }</h2>
             {student.birthdate && (
@@ -48,6 +49,16 @@ function StudentDetail() {
                     </div>
                 </div>
             )}
+            {student.languages && (
+                <div className="w-full">
+                    Languages: {student.languages?.join(", ")}
+                </div>
+            )}
+            {student.allergies && (
+                <div className="w-full">
+                    Languages: {student.allergies?.join(", ")}
+                </div>
+            )}
             <div className="flex justify-around">
                 <div className={"w-[200px] text-center " + (tab === 'Family' ? "border-b-2 border-[#B795E4] bg-[#B795E4] rounded-tr-md rounded-tl-md" : "")} onClick={() => setTab("Family")}>Family</div>
                 <div className={"w-[200px] text-center " + (tab === 'Food' ? "border-b-2 border-[#B795E4] bg-[#B795E4] rounded-tr-md rounded-tl-md" : "")} onClick={() => setTab("Food")}>Food</div>
@@ -57,9 +68,6 @@ function StudentDetail() {
             <div className="p-2 flex border-2 border-[#B795E4] rounded-md">
                 <div className="w-full md:flex md:flex-wrap">
                 {tab === 'Family' && (<>
-                    <div className="w-full">
-                        Languages: {student.languages?.join(", ")}
-                    </div>
                     <div className="w-full md:w-1/2 mt-2">
                         <h3>Family:</h3>
                         <table className="w-full text-left">
@@ -132,7 +140,12 @@ function StudentDetail() {
                 )}
                 </div>
             </div>
-            {isEditing && StudentForm(setEditing, student)}
+            {isEditing && (
+                <StudentForm 
+                    closeCallback={() => setEditing(false)} 
+                    student={student} 
+                />
+            )}
         </div>
     )
 }
